@@ -34,11 +34,11 @@ exit /b 1
 @REM 3. Verifies if a commit message was provided
 @REM ------------------------------------------
 
-if "%2"=="" (
+if "%~2"=="" (
     echo [GitBat] Error: no commit message was provided.
     echo.
     echo Example:
-    echo   gitbat -m "My message"
+    echo   gitbat -m "my commit message"
     exit /b 1
 )
 
@@ -170,13 +170,13 @@ echo GitBat - Simplified Git Workflow
 echo.
 echo Usage:
 echo.
-echo   gitbat -m "message"
-echo   gitbat --message "message"
+echo   gitbat -m "commit message"
+echo   gitbat --message "commit message"
 echo.
 echo With push:
 echo.
-echo   gitbat -m "message" --push
-echo   gitbat --message "message" --push
+echo   gitbat -m "commit message" --push
+echo   gitbat --message "commit message" --push
 echo.
 echo Options:
 echo.
@@ -184,10 +184,10 @@ echo   -m, --message
 echo       Define the commit message.
 echo.
 echo   --push
-echo       Execute the push to origin on the current branch.
+echo       Executes the push to origin on the current branch.
 echo.
 echo   -h, --help
-echo       Shows this help message.
+echo       Show this help message.
 echo.
 
 exit /b 0
