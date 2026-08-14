@@ -2,7 +2,7 @@
 
 Um script simples para Windows que facilita um fluxo básico de trabalho com Git.
 
-O GitBat combina `git add .` e `git commit -m "mensagem"` em um único comando, com a possibilidade de realizar o push para a branch atual.
+O **Git Bat** combina `git add .` e `git commit -m "mensagem"` em um único comando, com a possibilidade de realizar o push para a branch atual.
 
 A ideia não é substituir o Git ou as interfaces das IDEs, mas tornar um fluxo comum pelo terminal um pouco mais rápido e simples.
 
@@ -16,7 +16,7 @@ A ideia não é substituir o Git ou as interfaces das IDEs, mas tornar um fluxo 
 - Mantém as mensagens e erros originais do Git
 - Mensagens personalizadas para situações comuns
 - Instalador simples para Windows
-- Adiciona o GitBat ao `PATH` do usuário
+- Adiciona o **Git Bat** ao `PATH` do usuário
 - Pode ser instalado com dois cliques no `install.bat`
 
 ## Requisitos
@@ -25,7 +25,7 @@ A ideia não é substituir o Git ou as interfaces das IDEs, mas tornar um fluxo 
 - Git instalado e disponível no terminal
 - Windows PowerShell
 
-O GitBat em si é implementado como um script `.bat`.
+O **Git Bat** em si é implementado como um script `.bat`.
 
 O PowerShell é utilizado apenas pelo instalador para gerenciar o `PATH` do usuário.
 
@@ -57,7 +57,7 @@ O instalador irá:
 
 1. Verificar se o `gitbat.bat` existe.
 2. Verificar o `PATH` do usuário atual.
-3. Adicionar o diretório do GitBat caso ele ainda não esteja no `PATH`.
+3. Adicionar o diretório do **Git Bat** caso ele ainda não esteja no `PATH`.
 4. Evitar entradas duplicadas.
 5. Informar o resultado da instalação.
 
@@ -77,11 +77,11 @@ Então verifique:
 gitbat --help
 ```
 
-Se a mensagem de ajuda aparecer, o GitBat está pronto para ser utilizado.
+Se a mensagem de ajuda aparecer, o **Git Bat** está pronto para ser utilizado.
 
 ## Uso
 
-O GitBat exige uma mensagem para o commit.
+O **Git Bat** exige uma mensagem para o commit.
 
 ### Criar um commit
 
@@ -95,7 +95,7 @@ ou:
 gitbat --message "mensagem do commit"
 ```
 
-O GitBat irá executar:
+O **Git Bat** irá executar:
 
 ```bash
 git add .
@@ -116,13 +116,13 @@ ou:
 gitbat --message "mensagem do commit" --push
 ```
 
-Quando `--push` é utilizado, o GitBat detecta automaticamente a branch atual e executa:
+Quando `--push` é utilizado, o **Git Bat** detecta automaticamente a branch atual e executa:
 
 ```bash
 git push origin <branch-atual>
 ```
 
-Por exemplo, se a branch atual for `feature/login`, o GitBat irá executar:
+Por exemplo, se a branch atual for `feature/login`, o **Git Bat** irá executar:
 
 ```bash
 git push origin feature/login
@@ -168,7 +168,7 @@ gitbat --help
 
 ## Como funciona
 
-Sem o GitBat, um fluxo básico pode ser:
+Sem o **Git Bat**, um fluxo básico pode ser:
 
 ```bash
 git add .
@@ -176,18 +176,18 @@ git commit -m "mensagem"
 git push origin main
 ```
 
-Com o GitBat:
+Com o **Git Bat**:
 
 ```bash
 gitbat -m "mensagem" --push
 ```
 
-O GitBat cuida das partes repetitivas, mas continua utilizando o próprio Git para realizar as operações.
+O **Git Bat** cuida das partes repetitivas, mas continua utilizando o próprio Git para realizar as operações.
 
 O fluxo simplificado é:
 
 ```text
-GitBat
+**Git Bat**
    |
    +-- Valida os argumentos
    |
@@ -204,17 +204,17 @@ GitBat
 
 ## Tratamento de erros
 
-O GitBat não esconde as mensagens do Git.
+O **Git Bat** não esconde as mensagens do Git.
 
-Erros e avisos do Git continuam sendo exibidos normalmente, enquanto o GitBat fornece mensagens adicionais para situações comuns.
+Erros e avisos do Git continuam sendo exibidos normalmente, enquanto o **Git Bat** fornece mensagens adicionais para situações comuns.
 
-Por exemplo, ao executar o GitBat fora de um repositório Git:
+Por exemplo, ao executar o **Git Bat** fora de um repositório Git:
 
 ```text
-[GitBat] Error: this directory is not a Git repository.
+[**Git Bat**] Error: this directory is not a Git repository.
 ```
 
-Ao executar o comando sem fornecer uma mensagem de commit, o GitBat informa o problema antes de tentar realizar o commit.
+Ao executar o comando sem fornecer uma mensagem de commit, o **Git Bat** informa o problema antes de tentar realizar o commit.
 
 Caso o próprio Git retorne um erro, sua mensagem original continua sendo exibida para que o usuário possa entender o que aconteceu.
 
@@ -222,13 +222,13 @@ Caso o próprio Git retorne um erro, sua mensagem original continua sendo exibid
 
 ### `git add .`
 
-Atualmente o GitBat adiciona todas as alterações do repositório utilizando:
+Atualmente o **Git Bat** adiciona todas as alterações do repositório utilizando:
 
 ```bash
 git add .
 ```
 
-Por isso, o GitBat é indicado para situações em que o usuário está confortável em colocar todas as alterações atuais no commit.
+Por isso, o **Git Bat** é indicado para situações em que o usuário está confortável em colocar todas as alterações atuais no commit.
 
 Se for necessário selecionar arquivos individualmente, pode ser mais adequado utilizar o Git diretamente ou a interface de staging da IDE.
 
@@ -240,7 +240,7 @@ Se não houver alterações para realizar o commit, o Git exibirá:
 nothing to commit, working tree clean
 ```
 
-O GitBat identifica que o commit não foi criado e informa o erro.
+O **Git Bat** identifica que o commit não foi criado e informa o erro.
 
 ### Push
 
@@ -265,29 +265,29 @@ git-bat/
 └── LICENSE
 ```
 
-### `gitbat.bat`
+#### `gitbat.bat`
 
-Script principal do GitBat. É responsável pelos argumentos, validações, commits e pushes opcionais.
+Script principal do **Git Bat**. É responsável pelos argumentos, validações, commits e pushes opcionais.
 
-### `install.bat`
+#### `install.bat`
 
-Instala o GitBat adicionando o diretório do projeto ao `PATH` do usuário atual.
+Instala o **Git Bat** adicionando o diretório do projeto ao `PATH` do usuário atual.
 
-### `README.md`
+#### `README.md`
 
 Documentação em inglês.
 
-### `README-pt-BR.md`
+#### `README-pt-BR.md`
 
 Documentação em português.
 
-### `.gitignore`
+#### `.gitignore`
 
 Contém regras relacionadas ao Windows para ajudar a evitar o envio acidental de arquivos locais desnecessários ou potencialmente sensíveis.
 
 ## Por que BAT?
 
-O GitBat foi desenvolvido intencionalmente como um script `.bat` para Windows.
+O **Git Bat** foi desenvolvido intencionalmente como um script `.bat` para Windows.
 
 A ideia é manter a ferramenta simples de executar e distribuir, sem exigir um aplicativo separado ou um runtime adicional.
 
@@ -295,7 +295,7 @@ O instalador utiliza o Windows PowerShell apenas onde ele é mais adequado: no g
 
 ## Limitações atuais
 
-O GitBat é propositalmente pequeno e possui algumas limitações:
+O **Git Bat** é propositalmente pequeno e possui algumas limitações:
 
 - Funciona apenas no Windows
 - Utiliza `git add .`, portanto não permite selecionar arquivos individualmente

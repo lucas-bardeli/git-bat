@@ -2,7 +2,7 @@
 
 A simple Windows batch script that simplifies a basic Git workflow.
 
-GitBat combines `git add .` and `git commit -m "message"` into a single command, with an optional push to the current branch.
+**Git Bat** combines `git add .` and `git commit -m "message"` into a single command, with an optional push to the current branch.
 
 The goal is not to replace Git or IDE interfaces, but to make a common terminal workflow a little faster and simpler.
 
@@ -16,7 +16,7 @@ The goal is not to replace Git or IDE interfaces, but to make a common terminal 
 - Displays Git's original output and errors
 - Custom error messages for common situations
 - Simple Windows installer
-- Adds GitBat to the user's `PATH`
+- Adds **Git Bat** to the user's `PATH`
 - Can be installed by double-clicking `install.bat`
 
 ## Requirements
@@ -25,7 +25,7 @@ The goal is not to replace Git or IDE interfaces, but to make a common terminal 
 - Git installed and available in the terminal
 - Windows PowerShell
 
-GitBat itself is implemented as a `.bat` script.
+**Git Bat** itself is implemented as a `.bat` script.
 
 PowerShell is only used by the installer to safely manage the user's `PATH`.
 
@@ -55,7 +55,7 @@ The installer will:
 
 1. Check if `gitbat.bat` exists.
 2. Check the current user's `PATH`.
-3. Add the GitBat directory if it is not already there.
+3. Add the **Git Bat** directory if it is not already there.
 4. Avoid adding duplicate entries.
 5. Display the installation result.
 
@@ -75,11 +75,11 @@ Then verify the installation:
 gitbat --help
 ```
 
-If the help message is displayed, GitBat is ready to use.
+If the help message is displayed, **Git Bat** is ready to use.
 
 ## Usage
 
-GitBat requires a commit message.
+**Git Bat** requires a commit message.
 
 ### Commit changes
 
@@ -93,7 +93,7 @@ or:
 gitbat --message "your commit message"
 ```
 
-GitBat will execute:
+**Git Bat** will execute:
 
 ```bash
 git add .
@@ -114,13 +114,13 @@ or:
 gitbat --message "your commit message" --push
 ```
 
-When `--push` is used, GitBat automatically detects the current branch and executes:
+When `--push` is used, **Git Bat** automatically detects the current branch and executes:
 
 ```bash
 git push origin <current-branch>
 ```
 
-For example, if the current branch is `feature/login`, GitBat will execute:
+For example, if the current branch is `feature/login`, **Git Bat** will execute:
 
 ```bash
 git push origin feature/login
@@ -166,7 +166,7 @@ gitbat --help
 
 ## How it works
 
-Without GitBat, a basic workflow can look like this:
+Without **Git Bat**, a basic workflow can look like this:
 
 ```bash
 git add .
@@ -174,18 +174,18 @@ git commit -m "your message"
 git push origin main
 ```
 
-With GitBat:
+With **Git Bat**:
 
 ```bash
 gitbat -m "your message" --push
 ```
 
-GitBat handles the repetitive parts while still relying on Git itself to perform the actual operations.
+**Git Bat** handles the repetitive parts while still relying on Git itself to perform the actual operations.
 
 The simplified workflow is:
 
 ```text
-GitBat
+**Git Bat**
    |
    +-- Validate arguments
    |
@@ -202,14 +202,14 @@ GitBat
 
 ## Error Handling
 
-GitBat does not hide Git's output.
+**Git Bat** does not hide Git's output.
 
-Git errors and warnings are displayed normally, while GitBat also provides additional messages for common situations.
+Git errors and warnings are displayed normally, while **Git Bat** also provides additional messages for common situations.
 
-For example, running GitBat outside a Git repository will display:
+For example, running **Git Bat** outside a Git repository will display:
 
 ```text
-[GitBat] Error: this directory is not a Git repository.
+[**Git Bat**] Error: this directory is not a Git repository.
 ```
 
 Running it without a commit message will display an appropriate error instead of attempting the commit.
@@ -220,13 +220,13 @@ If Git itself reports an error, its original output is preserved so the user can
 
 ### `git add .`
 
-GitBat currently stages all changes in the current repository using:
+**Git Bat** currently stages all changes in the current repository using:
 
 ```bash
 git add .
 ```
 
-This means GitBat is intended for users who are comfortable committing all current changes.
+This means **Git Bat** is intended for users who are comfortable committing all current changes.
 
 If you need to stage specific files individually, using Git directly or the staging interface in an IDE may be more appropriate.
 
@@ -238,7 +238,7 @@ If there are no changes to commit, Git will report:
 nothing to commit, working tree clean
 ```
 
-GitBat detects that the commit was not created and reports the failure.
+**Git Bat** detects that the commit was not created and reports the failure.
 
 ### Push
 
@@ -263,29 +263,29 @@ git-bat/
 └── LICENSE
 ```
 
-### `gitbat.bat`
+#### `gitbat.bat`
 
-The main GitBat script. It handles arguments, validation, commits and optional pushes.
+The main **Git Bat** script. It handles arguments, validation, commits and optional pushes.
 
-### `install.bat`
+#### `install.bat`
 
-Installs GitBat by adding the project directory to the current user's `PATH`.
+Installs **Git Bat** by adding the project directory to the current user's `PATH`.
 
-### `README.md`
+#### `README.md`
 
 English documentation.
 
-### `README-pt-BR.md`
+#### `README-pt-BR.md`
 
 Portuguese documentation.
 
-### `.gitignore`
+#### `.gitignore`
 
 Contains Windows-related ignore rules to help avoid accidentally committing unnecessary or sensitive local files.
 
 ## Why BAT?
 
-GitBat was intentionally created as a Windows batch script.
+**Git Bat** was intentionally created as a Windows batch script.
 
 The idea was to make the tool extremely simple to run and distribute without requiring a separate application or runtime.
 
@@ -293,7 +293,7 @@ The installer uses Windows PowerShell only where it makes sense: managing the us
 
 ## Current Limitations
 
-GitBat is intentionally small and currently has some limitations:
+**Git Bat** is intentionally small and currently has some limitations:
 
 - Windows only
 - Uses `git add .`, so individual file selection is not supported
