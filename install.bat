@@ -27,12 +27,13 @@ echo Checking user PATH...
 echo.
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -Command ^
-"$install = '%install_dir%'.TrimEnd('\'); ^
+"$install = '%install_dir%'; ^
+$normalizedInstall = $install.TrimEnd('\'); ^
 $path = [Environment]::GetEnvironmentVariable('Path', 'User'); ^
 $entries = $path.Split(';'); ^
 $found = $false; ^
 foreach ($entry in $entries) { ^
-    if ($entry.Trim().TrimEnd('\') -ieq $install) { ^
+    if ($entry.Trim().TrimEnd('\') -ieq $normalizedInstall) { ^
         $found = $true; ^
     } ^
 }; ^
