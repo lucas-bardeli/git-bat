@@ -5,77 +5,57 @@
 @REM Version 1.0
 @REM ==========================================
 
-set "install_dir=%~dp0"
-
 echo.
 echo GitBat Installer
 echo =================
 echo.
+
+set "install_dir=%~dp0"
+
 echo Install directory:
 echo %install_dir%
 echo.
 
-
-@REM ------------------------------------------
-@REM Verify if gitbat.bat exists in the same 
-@REM directory as install.bat
-@REM ------------------------------------------
-
 if not exist "%install_dir%gitbat.bat" (
     echo [GitBat] Error: gitbat.bat was not found.
     echo.
-    echo Make sure install.bat is in the GitBat folder.
+    pause
     exit /b 1
 )
 
+echo Checking user PATH...
+echo.
 
-@REM ------------------------------------------
-@REM Get the current user PATH
-@REM ------------------------------------------
-
-set "user_path="
-
-for /f "tokens=2,*" %%A in (
-    'reg query "HKCU\Environment" /v Path 2^>nul'
-) do (
-    set "user_path=%%B"
-)
-
-
-@REM ------------------------------------------
-@REM Verify if the user PATH exists
-@REM ------------------------------------------
-
-if not defined user_path (
-    set "user_path=%install_dir%"
-    goto save_path
-)
-
-
-@REM ------------------------------------------
-@REM Add GitBat to the PATH
-@REM ------------------------------------------
-
-set "user_path=%user_path%;%install_dir%"
-
-
-:save_path
-
-reg add "HKCU\Environment" /v Path /t REG_EXPAND_SZ /d "%user_path%" /f >nul
+powershell.exe -NoProfile -ExecutionPolicy Bypass -Command ^
+"$path = [Environment]::GetEnvironmentVariable('Path', 'User'); ^
+$install = '%install_dir%'; ^
+if ($path -split ';' -contains $install.TrimEnd('\')) { ^
+    Write-Host '[GitBat] GitBat is already in the user PATH.'; ^
+    exit 0 ^
+}; ^
+if ([string]::IsNullOrWhiteSpace($path)) { ^
+    $newPath = $install ^
+} else { ^
+    $newPath = $path.TrimEnd(';') + ';' + $install ^
+}; ^
+[Environment]::SetEnvironmentVariable('Path', $newPath, 'User'); ^
+Write-Host '[GitBat] GitBat was successfully added to the user PATH.'"
 
 if errorlevel 1 (
+    echo.
     echo [GitBat] Error: failed to update the user PATH.
+    echo.
+    pause
     exit /b 1
 )
 
-
-echo [GitBat] GitBat was successfully added to the user PATH.
 echo.
 echo Close this terminal and open a new one.
 echo.
-echo Then try:
+echo Then run:
 echo.
 echo   gitbat --help
 echo.
 
+pause
 exit /b 0
