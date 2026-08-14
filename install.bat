@@ -27,9 +27,16 @@ echo Checking user PATH...
 echo.
 
 powershell.exe -NoProfile -ExecutionPolicy Bypass -Command ^
-"$path = [Environment]::GetEnvironmentVariable('Path', 'User'); ^
-$install = '%install_dir%'; ^
-if ($path -split ';' -contains $install.TrimEnd('\')) { ^
+"$install = '%install_dir%'.TrimEnd('\'); ^
+$path = [Environment]::GetEnvironmentVariable('Path', 'User'); ^
+$entries = $path.Split(';'); ^
+$found = $false; ^
+foreach ($entry in $entries) { ^
+    if ($entry.Trim().TrimEnd('\') -ieq $install) { ^
+        $found = $true; ^
+    } ^
+}; ^
+if ($found) { ^
     Write-Host '[GitBat] GitBat is already in the user PATH.'; ^
     exit 0 ^
 }; ^
