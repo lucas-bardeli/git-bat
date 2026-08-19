@@ -1,4 +1,4 @@
-# ⚡ Git Bat - Simplified Git Workflow
+# ⚡ Git Bat - Simplificando o fluxo de trabalho com Git
 
 Um script simples para Windows que facilita um fluxo básico de trabalho com Git.
 
@@ -14,10 +14,7 @@ A ideia não é substituir o Git ou as interfaces das IDEs, mas tornar um fluxo 
 - Suporta opções curtas e longas
 - Validação básica dos argumentos
 - Mantém as mensagens e erros originais do Git
-- Mensagens personalizadas para situações comuns
-- Instalador simples para Windows
-- Adiciona o **Git Bat** ao `PATH` do usuário
-- Pode ser instalado com dois cliques no `install.bat`
+- Instalador simples que adiciona o **Git Bat** ao `PATH` do usuário
 
 ## Requisitos
 
@@ -35,53 +32,23 @@ Clone ou baixe o repositório:
 
 ```bash
 git clone https://github.com/lucas-bardeli/git-bat.git
-```
-
-Entre na pasta do projeto:
-
-```powershell
+# Entre no diretório do projeto:
 cd git-bat
 ```
 
-### Opção 1 — Dois cliques
-
-Abra a pasta do projeto e execute:
-
-```text
-install.bat
-```
-
-com dois cliques.
-
-O instalador irá:
-
-1. Verificar se o `gitbat.bat` existe.
-2. Verificar o `PATH` do usuário atual.
-3. Adicionar o diretório do **Git Bat** caso ele ainda não esteja no `PATH`.
-4. Evitar entradas duplicadas.
-5. Informar o resultado da instalação.
-
-### Opção 2 — Terminal
-
-Também é possível executar o instalador pelo PowerShell ou pelo Prompt de Comando:
+Execute o instalador com dois cliques em [install.bat](install.bat) ou pelo terminal:
 
 ```powershell
 .\install.bat
 ```
 
-Depois da instalação, feche o terminal atual e abra um novo.
-
-Então verifique:
+Após a instalação, abra um novo terminal e verifique:
 
 ```powershell
 gitbat --help
 ```
 
-Se a mensagem de ajuda aparecer, o **Git Bat** está pronto para ser utilizado.
-
 ## Uso
-
-O **Git Bat** exige uma mensagem para o commit.
 
 ### Criar um commit
 
@@ -95,7 +62,7 @@ ou:
 gitbat --message "mensagem do commit"
 ```
 
-O **Git Bat** irá executar:
+Isso executa:
 
 ```bash
 git add .
@@ -103,8 +70,6 @@ git commit -m "mensagem do commit"
 ```
 
 ### Criar o commit e fazer push
-
-Para criar o commit e enviá-lo para a branch atual:
 
 ```bash
 gitbat -m "mensagem do commit" --push
@@ -116,13 +81,13 @@ ou:
 gitbat --message "mensagem do commit" --push
 ```
 
-Quando `--push` é utilizado, o **Git Bat** detecta automaticamente a branch atual e executa:
+Com `--push`, o **Git Bat** detecta a branch atual e executa:
 
 ```bash
 git push origin <branch-atual>
 ```
 
-Por exemplo, se a branch atual for `feature/login`, o **Git Bat** irá executar:
+Por exemplo, se a branch atual for `feature/login`, o **Git Bat** executará:
 
 ```bash
 git push origin feature/login
@@ -132,43 +97,29 @@ Isso também funciona no primeiro push de uma branch.
 
 ## Opções
 
-| Opção                  | Descrição                                |
-| ---------------------- | ---------------------------------------- |
-| `-m "mensagem"`        | Define a mensagem do commit              |
-| `--message "mensagem"` | Define a mensagem do commit              |
-| `--push`               | Faz push para o `origin` na branch atual |
-| `-h`                   | Exibe a mensagem de ajuda                |
-| `--help`               | Exibe a mensagem de ajuda                |
+| Opção                                     | Descrição                                |
+| ----------------------------------------- | ---------------------------------------- |
+| `-m "mensagem"` ou `--message "mensagem"` | Define a mensagem do commit              |
+| `--push`                                  | Faz push para o `origin` na branch atual |
+| `-h` ou `--help`                          | Exibe a mensagem de ajuda                |
 
 ## Exemplos
-
-Commit básico:
 
 ```bash
 gitbat -m "adiciona página de login"
 ```
 
-Commit e push:
-
 ```bash
 gitbat -m "corrige bug de navegação" --push
 ```
-
-Utilizando a opção longa:
-
-```bash
-gitbat --message "atualiza documentação" --push
-```
-
-Exibir ajuda:
 
 ```bash
 gitbat --help
 ```
 
-## Como funciona
+## Como Funciona
 
-Sem o **Git Bat**, um fluxo básico pode ser:
+Sem o **Git Bat**:
 
 ```bash
 git add .
@@ -182,69 +133,31 @@ Com o **Git Bat**:
 gitbat -m "mensagem" --push
 ```
 
-O **Git Bat** cuida das partes repetitivas, mas continua utilizando o próprio Git para realizar as operações.
+O **Git Bat** cuida das partes repetitivas, enquanto o Git realiza as operações.
 
-O fluxo simplificado é:
+## Observações Importantes
 
-```text
-**Git Bat**
-   |
-   +-- Valida os argumentos
-   |
-   +-- Verifica se está em um repositório Git
-   |
-   +-- git add .
-   |
-   +-- git commit -m "mensagem"
-   |
-   +-- [opcional] detecta a branch atual
-   |
-   +-- [opcional] git push origin <branch>
-```
+### Staging
 
-## Tratamento de erros
-
-O **Git Bat** não esconde as mensagens do Git.
-
-Erros e avisos do Git continuam sendo exibidos normalmente, enquanto o **Git Bat** fornece mensagens adicionais para situações comuns.
-
-Por exemplo, ao executar o **Git Bat** fora de um repositório Git:
-
-```text
-[**Git Bat**] Error: this directory is not a Git repository.
-```
-
-Ao executar o comando sem fornecer uma mensagem de commit, o **Git Bat** informa o problema antes de tentar realizar o commit.
-
-Caso o próprio Git retorne um erro, sua mensagem original continua sendo exibida para que o usuário possa entender o que aconteceu.
-
-## Observações importantes
-
-### `git add .`
-
-Atualmente o **Git Bat** adiciona todas as alterações do repositório utilizando:
+Atualmente, o **Git Bat** utiliza:
 
 ```bash
 git add .
 ```
 
-Por isso, o **Git Bat** é indicado para situações em que o usuário está confortável em colocar todas as alterações atuais no commit.
+Todas as alterações do repositório são adicionadas ao staging antes do commit.
 
-Se for necessário selecionar arquivos individualmente, pode ser mais adequado utilizar o Git diretamente ou a interface de staging da IDE.
+### Sem Alterações
 
-### Commit sem alterações
-
-Se não houver alterações para realizar o commit, o Git exibirá:
+Se não houver alterações para realizar o commit, a mensagem original do Git será exibida:
 
 ```text
 nothing to commit, working tree clean
 ```
 
-O **Git Bat** identifica que o commit não foi criado e informa o erro.
-
 ### Push
 
-A opção `--push` utiliza sempre:
+A opção `--push` utiliza:
 
 ```bash
 git push origin <branch-atual>
@@ -252,68 +165,37 @@ git push origin <branch-atual>
 
 A branch atual é detectada automaticamente.
 
-## Estrutura do projeto
+## Estrutura do Projeto
 
 ```text
 git-bat/
 │
-├── gitbat.bat
-├── install.bat
-├── README.md
-├── README-pt-BR.md
-├── .gitignore
-└── LICENSE
+├── gitbat.bat      # Script principal do Git Bat
+├── install.bat     # Adiciona o Git Bat ao PATH do usuário
+├── README.md       # Documentação em inglês
+├── README-pt-BR.md # Documentação em português
+├── .gitignore      # Regras do Git para arquivos ignorados
+└── LICENSE         # Licença MIT
 ```
-
-#### `gitbat.bat`
-
-Script principal do **Git Bat**. É responsável pelos argumentos, validações, commits e pushes opcionais.
-
-#### `install.bat`
-
-Instala o **Git Bat** adicionando o diretório do projeto ao `PATH` do usuário atual.
-
-#### `README.md`
-
-Documentação em inglês.
-
-#### `README-pt-BR.md`
-
-Documentação em português.
-
-#### `.gitignore`
-
-Contém regras relacionadas ao Windows para ajudar a evitar o envio acidental de arquivos locais desnecessários ou potencialmente sensíveis.
 
 ## Por que BAT?
 
-O **Git Bat** foi desenvolvido intencionalmente como um script `.bat` para Windows.
+O **Git Bat** foi criado como um script batch do Windows para manter a ferramenta simples de executar e distribuir, sem exigir um runtime adicional.
 
-A ideia é manter a ferramenta simples de executar e distribuir, sem exigir um aplicativo separado ou um runtime adicional.
-
-O instalador utiliza o Windows PowerShell apenas onde ele é mais adequado: no gerenciamento do `PATH` do usuário.
-
-## Limitações atuais
-
-O **Git Bat** é propositalmente pequeno e possui algumas limitações:
+## Limitações
 
 - Funciona apenas no Windows
-- Utiliza `git add .`, portanto não permite selecionar arquivos individualmente
-- Os argumentos devem seguir o formato documentado
+- Utiliza `git add .`
 - Não possui interface gráfica
 - Não resolve conflitos automaticamente
-- Ainda não possui um script próprio de desinstalação
-
-Essas limitações podem mudar em versões futuras.
+- Não possui um script próprio de desinstalação
 
 ## Contribuição
 
-Sugestões, relatos de problemas e melhorias são bem-vindos.
-
-Caso encontre algum problema, fique à vontade para abrir uma issue ou enviar um pull request.
+Sugestões, relatos de problemas e melhorias são bem-vindos. Caso encontre algum problema, fique à vontade para abrir uma issue ou enviar um pull request.
 
 ## Licença
 
 Este projeto está licenciado sob a MIT License.
 
-Consulte o arquivo `LICENSE` para mais informações.
+Consulte o arquivo [LICENSE](LICENSE) para mais informações.
