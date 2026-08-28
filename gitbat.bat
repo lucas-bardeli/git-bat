@@ -2,9 +2,19 @@
 
 @REM ==========================================
 @REM GitBat - Simplified Git Workflow
-@REM Version 1.0
+@REM Version 1.1
 @REM ==========================================
 
+@REM ------------------------------------------
+@REM COLORS
+@REM ------------------------------------------
+
+set "GREEN=[92m"
+set "RED=[91m"
+set "YELLOW=[93m"
+set "PURPLE=[95m"
+set "ORANGE=[38;5;208m"
+set "RESET=[0m"
 
 @REM ------------------------------------------
 @REM 1. Verify if it was called -h or --help
@@ -22,7 +32,7 @@ if "%1"=="--help" goto help
 if "%1"=="-m" goto validate_message
 if "%1"=="--message" goto validate_message
 
-echo [GitBat] Error: invalid argument.
+echo %RED%[GitBat]%RESET% Error: invalid argument.
 echo.
 echo Use "gitbat --help" to see the available commands.
 exit /b 1
@@ -35,9 +45,9 @@ exit /b 1
 @REM ------------------------------------------
 
 if "%~2"=="" (
-    echo [GitBat] Error: no commit message was provided.
+    echo %RED%[GitBat]%RESET% Error: no commit message was provided.
     echo.
-    echo Example:
+    echo %ORANGE%Example:%RESET%
     echo   gitbat -m "my commit message"
     exit /b 1
 )
@@ -53,7 +63,7 @@ set "message=%~2"
 where git >nul 2>&1
 
 if errorlevel 1 (
-    echo [GitBat] Error: Git not found in PATH.
+    echo %RED%[GitBat]%RESET% Error: Git not found in PATH.
     echo.
     echo Verify that Git is installed and available in the PATH.
     exit /b 1
@@ -68,7 +78,7 @@ if errorlevel 1 (
 git rev-parse --is-inside-work-tree >nul 2>&1
 
 if errorlevel 1 (
-    echo [GitBat] Error: this directory is not a Git repository.
+    echo %RED%[GitBat]%RESET% Error: this directory is not a Git repository.
     exit /b 1
 )
 
@@ -78,14 +88,14 @@ if errorlevel 1 (
 @REM ------------------------------------------
 
 echo.
-echo [GitBat] Executing git add .
+echo %YELLOW%[GitBat]%RESET% Executing git add .
 echo.
 
 git add .
 
 if errorlevel 1 (
     echo.
-    echo [GitBat] Error: git add failed.
+    echo %RED%[GitBat]%RESET% Error: git add failed.
     exit /b 1
 )
 
@@ -95,14 +105,14 @@ if errorlevel 1 (
 @REM ------------------------------------------
 
 echo.
-echo [GitBat] Executing git commit...
+echo %YELLOW%[GitBat]%RESET% Executing git commit...
 echo.
 
 git commit -m "%message%"
 
 if errorlevel 1 (
     echo.
-    echo [GitBat] Error: the commit was not created.
+    echo %RED%[GitBat]%RESET% Error: the commit was not created.
     exit /b 1
 )
 
@@ -126,7 +136,7 @@ for /f "delims=" %%A in ('git branch --show-current') do set "branch=%%A"
 
 if "%branch%"=="" (
     echo.
-    echo [GitBat] Error: could not identify the current branch.
+    echo %RED%[GitBat]%RESET% Error: could not identify the current branch.
     exit /b 1
 )
 
@@ -136,16 +146,16 @@ if "%branch%"=="" (
 @REM ------------------------------------------
 
 echo.
-echo [GitBat] Current branch: %branch%
+echo %PURPLE%[GitBat]%RESET% Current branch: %branch%
 echo.
-echo [GitBat] Executing git push origin %branch%
+echo %YELLOW%[GitBat]%RESET% Executing git push origin %branch%
 echo.
 
 git push origin "%branch%"
 
 if errorlevel 1 (
     echo.
-    echo [GitBat] Error: the push failed.
+    echo %RED%[GitBat]%RESET% Error: the push failed.
     exit /b 1
 )
 
@@ -155,7 +165,7 @@ goto success
 :success
 
 echo.
-echo [GitBat] Operation completed successfully.
+echo %GREEN%[GitBat]%RESET% Operation completed successfully.
 exit /b 0
 
 
@@ -166,19 +176,19 @@ exit /b 0
 :help
 
 echo.
-echo GitBat - Simplified Git Workflow
+echo %YELLOW%GitBat - Simplified Git Workflow%RESET%
 echo.
-echo Usage:
+echo %PURPLE%Usage:%RESET%
 echo.
 echo   gitbat -m "commit message"
 echo   gitbat --message "commit message"
 echo.
-echo With push:
+echo %PURPLE%With push:%RESET%
 echo.
 echo   gitbat -m "commit message" --push
 echo   gitbat --message "commit message" --push
 echo.
-echo Options:
+echo %PURPLE%Options:%RESET%
 echo.
 echo   -m, --message
 echo       Define the commit message.
