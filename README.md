@@ -1,10 +1,8 @@
 # ⚡ Git Bat - Simplified Git Workflow
 
-A simple Windows batch script that simplifies a basic Git workflow.
+**Git Bat** is a lightweight Windows tool that combines `git add .` and `git commit -m "message"` into a single command, with an optional push to the current branch.
 
-**Git Bat** combines `git add .` and `git commit -m "message"` into a single command, with an optional push to the current branch.
-
-The goal is not to replace Git or IDE interfaces, but to make a common terminal workflow a little faster and simpler.
+The goal is not to replace Git or IDE interfaces, but to make a common terminal workflow faster and more convenient.
 
 ## Features
 
@@ -14,17 +12,8 @@ The goal is not to replace Git or IDE interfaces, but to make a common terminal 
 - Supports short and long options
 - Basic argument validation
 - Preserves Git's original output and errors
-- Simple installer that adds Git Bat to the user's `PATH`
-
-## Requirements
-
-- Windows
-- Git installed and available in the terminal
-- Windows PowerShell
-
-**Git Bat** itself is implemented as a `.bat` script.
-
-PowerShell is only used by the installer to safely manage the user's `PATH`.
+- Color-coded `[GitBat]` messages for information, errors and success
+- Simple installer that adds **Git Bat** to the user's `PATH`
 
 ## Installation
 
@@ -48,6 +37,8 @@ After installation, open a new terminal and verify:
 gitbat --help
 ```
 
+> To update an existing installation, pull the latest changes.
+
 ## Usage
 
 ### Commit changes
@@ -62,23 +53,10 @@ or:
 gitbat --message "your commit message"
 ```
 
-This runs:
-
-```bash
-git add .
-git commit -m "your commit message"
-```
-
 ### Commit and push
 
 ```bash
 gitbat -m "your commit message" --push
-```
-
-or:
-
-```bash
-gitbat --message "your commit message" --push
 ```
 
 With `--push`, **Git Bat** detects the current branch and runs:
@@ -95,7 +73,7 @@ git push origin feature/login
 
 This also works for the first push of a branch.
 
-## Options
+### Options
 
 | Option                                  | Description                            |
 | --------------------------------------- | -------------------------------------- |
@@ -103,99 +81,45 @@ This also works for the first push of a branch.
 | `--push`                                | Push to `origin` on the current branch |
 | `-h` or `--help`                        | Show the help message                  |
 
-## Examples
+**Git Bat** uses `git add .`, so all changes in the repository are staged before the commit.
 
-```bash
-gitbat -m "add login page"
-```
+If there are no changes, Git's original message is displayed:
 
-```bash
-gitbat -m "fix navigation bug" --push
-```
+> nothing to commit, working tree clean
 
-```bash
-gitbat --help
-```
+**Git Bat** does not hide Git's output or errors.
 
-## How It Works
+## Requirements
 
-Without **Git Bat**:
+- Windows
+- Git installed and available in the terminal
+- Windows PowerShell
 
-```bash
-git add .
-git commit -m "your message"
-git push origin main
-```
+**Git Bat** is implemented as a `.bat` script and does not require an additional runtime.
 
-With **Git Bat**:
+PowerShell is only used by the installer to safely manage the user's `PATH`.
 
-```bash
-gitbat -m "your message" --push
-```
+**Git Bat** is intentionally focused on a small terminal workflow. It currently does not provide:
 
-**Git Bat** handles the repetitive parts while Git performs the actual operations.
-
-## Important Notes
-
-### Staging
-
-**Git Bat** currently uses:
-
-```bash
-git add .
-```
-
-All changes in the repository are staged before the commit.
-
-### No Changes
-
-If there are no changes to commit, Git's original message is displayed:
-
-```text
-nothing to commit, working tree clean
-```
-
-### Push
-
-The `--push` option uses:
-
-```bash
-git push origin <current-branch>
-```
-
-The current branch is detected automatically.
+- Individual file staging
+- A graphical interface
+- Automatic conflict resolution
+- A built-in uninstall script
 
 ## Project Structure
 
 ```text
 git-bat/
-│
 ├── gitbat.bat      # Main Git Bat script
 ├── install.bat     # Adds Git Bat to the user's PATH
 ├── README.md       # English documentation
 ├── README-pt-BR.md # Portuguese documentation
-├── .gitignore      # Git ignore rules
+├── .gitignore      # Git ignore rules for security
 └── LICENSE         # MIT License
 ```
 
-## Why BAT?
-
-**Git Bat** was created as a Windows batch script to keep the tool simple to run and distribute without requiring an additional runtime.
-
-## Limitations
-
-- Windows only
-- Uses `git add .`
-- No graphical interface
-- No automatic conflict resolution
-- No built-in uninstall script
-
-## Contributing
+## Contributing and License
 
 Suggestions, bug reports and improvements are welcome. If you find a problem, feel free to open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License.
-
-See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
