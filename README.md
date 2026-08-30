@@ -4,7 +4,7 @@
 
 The goal is not to replace Git or IDE interfaces, but to make a common terminal workflow faster and more convenient.
 
-## Features
+## 💡 Features
 
 - Add and commit all changes with a single command
 - Optional push to `origin`
@@ -15,7 +15,7 @@ The goal is not to replace Git or IDE interfaces, but to make a common terminal 
 - Color-coded `[GitBat]` messages for information, errors and success
 - Simple installer that adds **Git Bat** to the user's `PATH`
 
-## Installation
+## ⚙️ Installation
 
 Clone or download the repository:
 
@@ -39,7 +39,7 @@ gitbat --help
 
 > To update an existing installation, pull the latest changes.
 
-## Usage
+## 💻 Usage
 
 ### Commit changes
 
@@ -89,7 +89,7 @@ If there are no changes, Git's original message is displayed:
 
 **Git Bat** does not hide Git's output or errors.
 
-## Requirements
+## 📦 Requirements
 
 - Windows
 - Git installed and available in the terminal
@@ -106,20 +106,21 @@ PowerShell is only used by the installer to safely manage the user's `PATH`.
 - Automatic conflict resolution
 - A built-in uninstall script
 
-## Project Structure
+## 🗂️ Project Structure
 
 ```text
 git-bat/
-├── gitbat.bat      # Main Git Bat script
-├── install.bat     # Adds Git Bat to the user's PATH
-├── README.md       # English documentation
-├── README-pt-BR.md # Portuguese documentation
-├── .gitignore      # Git ignore rules for security
-└── LICENSE         # MIT License
+├── gitbat.bat       # Main Git Bat script
+├── install.bat      # Adds Git Bat to the user's PATH
+├── README.md        # English documentation
+├── README-pt-BR.md  # Portuguese documentation
+├── .gitignore       # Git ignore rules for security
+└── LICENSE          # MIT License
 ```
 
-## Contributing and License
+## 📑 Contributing and License
 
-Suggestions, bug reports and improvements are welcome. If you find a problem, feel free to open an issue or submit a pull request.
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more information.
+Suggestions, bug reports and improvements are welcome.
+If you find a problem, feel free to open an issue or submit a pull request.
+This project is licensed under the **MIT License**.
+See the [LICENSE](LICENSE) file for more information.

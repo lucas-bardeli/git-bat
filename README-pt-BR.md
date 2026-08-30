@@ -4,7 +4,7 @@ O **Git Bat** é uma ferramenta leve para Windows que combina `git add .` e `git
 
 O objetivo não é substituir o Git ou as interfaces das IDEs, mas tornar um fluxo comum pelo terminal mais rápido e conveniente.
 
-## Funcionalidades
+## 💡 Funcionalidades
 
 - Adiciona e cria o commit de todas as alterações com um único comando
 - Push opcional para o `origin`
@@ -15,7 +15,7 @@ O objetivo não é substituir o Git ou as interfaces das IDEs, mas tornar um flu
 - Mensagens `[GitBat]` com cores para informações, erros e sucesso
 - Instalador simples que adiciona o **Git Bat** ao `PATH` do usuário
 
-## Instalação
+## ⚙️ Instalação
 
 Clone ou baixe o repositório:
 
@@ -39,7 +39,7 @@ gitbat --help
 
 > Para atualizar uma instalação existente, faça pull das alterações mais recentes.
 
-## Uso
+## 💻 Uso
 
 ### Criar um commit
 
@@ -89,7 +89,7 @@ Se não houver alterações, a mensagem original do Git será exibida:
 
 O **Git Bat** não esconde as mensagens ou erros do Git.
 
-## Requisitos
+## 📦 Requisitos
 
 - Windows
 - Git instalado e disponível no terminal
@@ -106,20 +106,21 @@ O **Git Bat** é intencionalmente focado em um pequeno fluxo de trabalho pelo te
 - Resolução automática de conflitos
 - Script próprio de desinstalação
 
-## Estrutura do Projeto
+## 🗂️ Estrutura do Projeto
 
 ```text
 git-bat/
-├── gitbat.bat      # Script principal do Git Bat
-├── install.bat     # Adiciona o Git Bat ao PATH do usuário
-├── README.md       # Documentação em inglês
-├── README-pt-BR.md # Documentação em português
-├── .gitignore      # Regras do Git para arquivos ignorados por segurança
-└── LICENSE         # Licença MIT
+├── gitbat.bat       # Script principal do Git Bat
+├── install.bat      # Adiciona o Git Bat ao PATH do usuário
+├── README.md        # Documentação em inglês
+├── README-pt-BR.md  # Documentação em português
+├── .gitignore       # Regras do Git para arquivos ignorados por segurança
+└── LICENSE          # Licença MIT
 ```
 
-## Contribuição e Licença
+## 📑 Contribuição e Licença
 
-Sugestões, relatos de problemas e melhorias são bem-vindos. Caso encontre algum problema, fique à vontade para abrir uma issue ou enviar um pull request.
-
-Este projeto está licenciado sob a MIT License. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
+Sugestões, relatos de problemas e melhorias são bem-vindos.
+Caso encontre algum problema, fique à vontade para abrir uma issue ou enviar um pull request.
+Este projeto está licenciado sob a MIT License.
+Consulte o arquivo [LICENSE](LICENSE) para mais informações.
